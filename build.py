@@ -1,18 +1,26 @@
 BLOG_DIR = 'D:/OneDrive/__Projects/macroblog'
 
+import sys
 import jinja2
 import yaml
 
-with open(BLOG_DIR + '/conf.yaml', 'r') as stream:
-    try:
-        print(yaml.safe_load(stream))
-    except yaml.YAMLError as exc:
-        print(exc)
-        
+# Initialize template loader & conf file
 env = jinja2.Environment(loader = jinja2.FileSystemLoader(searchpath = BLOG_DIR + '/posts'))
+with open(BLOG_DIR + '/conf.yaml', 'r') as x:
+	conf = yaml.safe_load(x)
 
-TEMPLATE_FILE = "content.html"
-template = env.get_template(TEMPLATE_FILE)
-output_text = template.render()  # this is where to put args to the template renderer
 
-print(output_text)
+# Build pages
+def build_page(date, template):
+	page_template = env.get_template(template)
+	page_output = page_template.render(
+		date = date
+	)
+	return(page_output)
+	
+# Run
+def main():
+	print(conf)
+	built_pages = list(map(lambda x: build_page(x['date'], x['template']), conf['posts']))
+	
+print(main())

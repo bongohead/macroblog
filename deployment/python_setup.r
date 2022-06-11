@@ -16,8 +16,8 @@ install_python(version = '3.9:latest')
 use_python_version('3.9:latest')
 virtualenv_create(file.path(BLOG_DIR, '.virtualenvs', 'bongohead'))
 # jinja2: HTML templating 
-# json: JSON parser for config file
-lapply(c('jinja2', 'json'), function(x) 
+# pyyaml: YAML parse
+lapply(c('jinja2', 'pyyaml'), function(x)
 	virtualenv_install(file.path(BLOG_DIR, '.virtualenvs', 'bongohead'), x)
 )
 
