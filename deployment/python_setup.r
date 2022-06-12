@@ -17,7 +17,7 @@ use_python_version('3.9:latest')
 virtualenv_create(file.path(BLOG_DIR, '.virtualenvs', 'bongohead'))
 # jinja2: HTML templating 
 # pyyaml: YAML parse
-lapply(c('jinja2', 'pyyaml'), function(x)
+lapply(c('jinja2', 'pyyaml', 'python-slugify', 'libsass'), function(x)
 	virtualenv_install(file.path(BLOG_DIR, '.virtualenvs', 'bongohead'), x)
 )
 
