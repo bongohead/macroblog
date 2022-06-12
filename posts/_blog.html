@@ -2,9 +2,8 @@
 
 {% block content %}
     <p class="important">
-      {date}.
+      {{date}}
     </p>
-    <p>
-      {post}
-    </p>
+    {% block post %}
+    {% endblock %}
 {% endblock %}

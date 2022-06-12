@@ -1,4 +1,4 @@
 posts:
   - date: 2022-06-11
     title: 'Dog is Ugly'
-    template: _blog.html
+    template: 'dog-is-ugly.html'

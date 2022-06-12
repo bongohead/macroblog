@@ -8,7 +8,9 @@ import sass
 from slugify import slugify
 
 # Initialize template loader & conf file
-env = jinja2.Environment(loader = jinja2.FileSystemLoader(searchpath = os.path.join(BLOG_DIR, 'posts')))
+env = jinja2.Environment(
+	loader = jinja2.FileSystemLoader(searchpath = [x[0] for x in os.walk(os.path.join(BLOG_DIR, 'posts'))])
+)
 with open(os.path.join(BLOG_DIR, 'conf.yaml'), 'r') as x:
 	conf = yaml.safe_load(x)
 
@@ -24,7 +26,7 @@ def build_page(template, date):
 def save_page(page_html, title):
 	title_slug = slugify(title)
 	# print(title_slug)
-	with open(os.path.join(BLOG_DIR, title_slug + '.html'), 'w') as x:
+	with open(os.path.join(BLOG_DIR, 'public', title_slug + '.html'), 'w') as x:
 		x.write(page_html)
 
 # Build SCSS
@@ -61,7 +63,7 @@ def main():
 		conf_appended
 	))
 	
-	build_css()
+	#build_css()
 	print(res)
 
 
