@@ -1,3 +1,4 @@
+
 BLOG_DIR = 'D:/OneDrive/__Projects/macroblog'
 
 import sys
@@ -44,7 +45,7 @@ def build_css():
 # Run
 def main():
 
-	print(conf)
+	# print(conf)
 
 	built_pages = list(map(
 		lambda x: build_page(x['template'], x['date']),
@@ -56,15 +57,17 @@ def main():
 		list(zip(built_pages, conf['posts']))
 	))
 
-	print(conf_appended)
+	# print(conf_appended)
 
 	res = list(map(
 		lambda x: save_page(x['page_html'], x['title']),
 		conf_appended
 	))
 	
-	#build_css()
-	print(res)
+	build_css()
+	# print(res)
+
+	return(True)
 
 
 main()
